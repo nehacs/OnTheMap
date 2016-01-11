@@ -8,13 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		F46409221C42CD2200C26E1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409211C42CD2200C26E1D /* AppDelegate.swift */; };
-		F46409241C42CD2200C26E1D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409231C42CD2200C26E1D /* FirstViewController.swift */; };
-		F46409261C42CD2200C26E1D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409251C42CD2200C26E1D /* SecondViewController.swift */; };
+		F46409241C42CD2200C26E1D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409231C42CD2200C26E1D /* MapViewController.swift */; };
+		F46409261C42CD2200C26E1D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409251C42CD2200C26E1D /* ListViewController.swift */; };
 		F46409291C42CD2200C26E1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46409271C42CD2200C26E1D /* Main.storyboard */; };
 		F464092B1C42CD2200C26E1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F464092A1C42CD2200C26E1D /* Assets.xcassets */; };
 		F464092E1C42CD2200C26E1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F464092C1C42CD2200C26E1D /* LaunchScreen.storyboard */; };
 		F46409391C42CD2200C26E1D /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409381C42CD2200C26E1D /* OnTheMapTests.swift */; };
 		F46409441C42CD2200C26E1D /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409431C42CD2200C26E1D /* OnTheMapUITests.swift */; };
+		F4F7B9DE1C42CE77006BBAF1 /* list.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DD1C42CE77006BBAF1 /* list.pdf */; settings = {ASSET_TAGS = (); }; };
+		F4F7B9E01C42CE7E006BBAF1 /* map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */; settings = {ASSET_TAGS = (); }; };
+		F4F7B9E31C42E410006BBAF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		F4F7B9E91C42E53F006BBAF1 /* pin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9E71C42E53F006BBAF1 /* pin.pdf */; settings = {ASSET_TAGS = (); }; };
+		F4F7B9EA1C42E53F006BBAF1 /* udacity.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9E81C42E53F006BBAF1 /* udacity.pdf */; settings = {ASSET_TAGS = (); }; };
+		F4F7B9EF1C42F1AF006BBAF1 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9EE1C42F1AF006BBAF1 /* UdacityClient.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +43,8 @@
 /* Begin PBXFileReference section */
 		F464091E1C42CD2200C26E1D /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46409211C42CD2200C26E1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F46409231C42CD2200C26E1D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		F46409251C42CD2200C26E1D /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		F46409231C42CD2200C26E1D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F46409251C42CD2200C26E1D /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F46409281C42CD2200C26E1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F464092A1C42CD2200C26E1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F464092D1C42CD2200C26E1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		F464093F1C42CD2200C26E1D /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46409431C42CD2200C26E1D /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		F46409451C42CD2200C26E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F7B9DD1C42CE77006BBAF1 /* list.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = list.pdf; path = assets/list.pdf; sourceTree = "<group>"; };
+		F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = map.pdf; path = assets/map.pdf; sourceTree = "<group>"; };
+		F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F4F7B9E71C42E53F006BBAF1 /* pin.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = pin.pdf; path = assets/pin.pdf; sourceTree = "<group>"; };
+		F4F7B9E81C42E53F006BBAF1 /* udacity.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = udacity.pdf; path = assets/udacity.pdf; sourceTree = "<group>"; };
+		F4F7B9EE1C42F1AF006BBAF1 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +112,12 @@
 			isa = PBXGroup;
 			children = (
 				F46409211C42CD2200C26E1D /* AppDelegate.swift */,
-				F46409231C42CD2200C26E1D /* FirstViewController.swift */,
-				F46409251C42CD2200C26E1D /* SecondViewController.swift */,
+				F4F7B9EB1C42F119006BBAF1 /* Model */,
+				F4F7B9E11C42E3D9006BBAF1 /* Controller */,
 				F46409271C42CD2200C26E1D /* Main.storyboard */,
-				F464092A1C42CD2200C26E1D /* Assets.xcassets */,
 				F464092C1C42CD2200C26E1D /* LaunchScreen.storyboard */,
-				F464092F1C42CD2200C26E1D /* Info.plist */,
+				F4F7B9E41C42E490006BBAF1 /* Assets */,
+				F4F7B9E61C42E4C4006BBAF1 /* Supporting Files */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -126,6 +138,68 @@
 				F46409451C42CD2200C26E1D /* Info.plist */,
 			);
 			path = OnTheMapUITests;
+			sourceTree = "<group>";
+		};
+		F4F7B9E11C42E3D9006BBAF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F46409251C42CD2200C26E1D /* ListViewController.swift */,
+				F46409231C42CD2200C26E1D /* MapViewController.swift */,
+				F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F4F7B9E41C42E490006BBAF1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F464092A1C42CD2200C26E1D /* Assets.xcassets */,
+				F4F7B9E51C42E49C006BBAF1 /* Images */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		F4F7B9E51C42E49C006BBAF1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F4F7B9E81C42E53F006BBAF1 /* udacity.pdf */,
+				F4F7B9E71C42E53F006BBAF1 /* pin.pdf */,
+				F4F7B9DD1C42CE77006BBAF1 /* list.pdf */,
+				F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		F4F7B9E61C42E4C4006BBAF1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F464092F1C42CD2200C26E1D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F4F7B9EB1C42F119006BBAF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4F7B9EC1C42F11F006BBAF1 /* Clients */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F4F7B9EC1C42F11F006BBAF1 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				F4F7B9ED1C42F126006BBAF1 /* Udacity */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		F4F7B9ED1C42F126006BBAF1 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				F4F7B9EE1C42F1AF006BBAF1 /* UdacityClient.swift */,
+			);
+			name = Udacity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +305,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F7B9E91C42E53F006BBAF1 /* pin.pdf in Resources */,
+				F4F7B9E01C42CE7E006BBAF1 /* map.pdf in Resources */,
+				F4F7B9DE1C42CE77006BBAF1 /* list.pdf in Resources */,
 				F464092E1C42CD2200C26E1D /* LaunchScreen.storyboard in Resources */,
 				F464092B1C42CD2200C26E1D /* Assets.xcassets in Resources */,
+				F4F7B9EA1C42E53F006BBAF1 /* udacity.pdf in Resources */,
 				F46409291C42CD2200C26E1D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +336,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F46409261C42CD2200C26E1D /* SecondViewController.swift in Sources */,
+				F4F7B9EF1C42F1AF006BBAF1 /* UdacityClient.swift in Sources */,
+				F4F7B9E31C42E410006BBAF1 /* LoginViewController.swift in Sources */,
+				F46409261C42CD2200C26E1D /* ListViewController.swift in Sources */,
 				F46409221C42CD2200C26E1D /* AppDelegate.swift in Sources */,
-				F46409241C42CD2200C26E1D /* FirstViewController.swift in Sources */,
+				F46409241C42CD2200C26E1D /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +565,7 @@
 				F464094A1C42CD2200C26E1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F464094B1C42CD2200C26E1D /* Build configuration list for PBXNativeTarget "OnTheMapTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +574,7 @@
 				F464094D1C42CD2200C26E1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F464094E1C42CD2200C26E1D /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +583,7 @@
 				F46409501C42CD2200C26E1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
