@@ -31,19 +31,7 @@ extension UdacityClient {
                 /* Success! We have the sessionID! */
                 self.sessionID = sessionID
                 
-                self.getUserID() { (success, userID, errorString) in
-                    
-                    if success {
-                        
-                        if let userID = userID {
-                            
-                            /* And the userID 😄! */
-                            self.userID = userID
-                        }
-                    }
-                    
-                    completionHandler(success: success, errorString: errorString)
-                }
+                completionHandler(success: success, errorString: errorString)
             } else {
                 completionHandler(success: success, errorString: errorString)
             }
@@ -53,7 +41,7 @@ extension UdacityClient {
     func getSessionID(completionHandler: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [UdacityClient.ParameterKeys.RequestToken : ""]
+        let parameters = [String: AnyObject]()
         
         /* 2. Make the request */
         taskForGETMethod(Methods.Session, parameters: parameters) { JSONResult, error in
@@ -63,10 +51,15 @@ extension UdacityClient {
                 print(error)
                 completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
             } else {
-                if let sessionID = JSONResult[UdacityClient.JSONResponseKeys.SessionID] as? String {
-                    completionHandler(success: true, sessionID: sessionID, errorString: nil)
+                if let sessionInfo = JSONResult[UdacityClient.JSONResponseKeys.Session] {
+                    if let sessionID = sessionInfo![UdacityClient.JSONResponseKeys.SessionID] as? String {
+                        completionHandler(success: true, sessionID: sessionID, errorString: nil)
+                    } else {
+                        print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(JSONResult)")
+                        completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+                    }
                 } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(JSONResult)")
+                    print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
                     completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
                 }
             }
