@@ -51,14 +51,21 @@ class LoginViewController: UIViewController {
     // MARK: Login
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
-        if emailTextField.text!.isEmpty {
-            debugTextLabel.text = "Username Empty."
-        } else if passwordTextField.text!.isEmpty {
-            debugTextLabel.text = "Password Empty."
-        } else {
-//            self.getRequestToken()
-            completeLogin()
+        UdacityClient.sharedInstance().authenticateWithViewController(self) { (success, errorString) in
+            if success {
+                self.completeLogin()
+            } else {
+                self.displayError(errorString)
+            }
         }
+    }
+    
+    func displayError(errorString: String?) {
+        dispatch_async(dispatch_get_main_queue(), {
+            if let errorString = errorString {
+                self.debugTextLabel.text = errorString
+            }
+        })
     }
     
     // MARK: MapTabBarController

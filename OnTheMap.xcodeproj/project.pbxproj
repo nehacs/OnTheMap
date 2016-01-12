@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0F583D1C457F7700CFA0FE /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F583C1C457F7700CFA0FE /* UdacityConstants.swift */; };
+		BB0F583F1C458BDE00CFA0FE /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F583E1C458BDE00CFA0FE /* UdacityConvenience.swift */; };
+		BB0F58411C458F8E00CFA0FE /* UdacityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0F58401C458F8E00CFA0FE /* UdacityConfig.swift */; };
 		F46409221C42CD2200C26E1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409211C42CD2200C26E1D /* AppDelegate.swift */; };
 		F46409241C42CD2200C26E1D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409231C42CD2200C26E1D /* MapViewController.swift */; };
 		F46409261C42CD2200C26E1D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409251C42CD2200C26E1D /* ListViewController.swift */; };
@@ -15,12 +18,12 @@
 		F464092E1C42CD2200C26E1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F464092C1C42CD2200C26E1D /* LaunchScreen.storyboard */; };
 		F46409391C42CD2200C26E1D /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409381C42CD2200C26E1D /* OnTheMapTests.swift */; };
 		F46409441C42CD2200C26E1D /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409431C42CD2200C26E1D /* OnTheMapUITests.swift */; };
-		F4F7B9DE1C42CE77006BBAF1 /* list.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DD1C42CE77006BBAF1 /* list.pdf */; settings = {ASSET_TAGS = (); }; };
-		F4F7B9E01C42CE7E006BBAF1 /* map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */; settings = {ASSET_TAGS = (); }; };
-		F4F7B9E31C42E410006BBAF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		F4F7B9E91C42E53F006BBAF1 /* pin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9E71C42E53F006BBAF1 /* pin.pdf */; settings = {ASSET_TAGS = (); }; };
-		F4F7B9EA1C42E53F006BBAF1 /* udacity.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9E81C42E53F006BBAF1 /* udacity.pdf */; settings = {ASSET_TAGS = (); }; };
-		F4F7B9EF1C42F1AF006BBAF1 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9EE1C42F1AF006BBAF1 /* UdacityClient.swift */; settings = {ASSET_TAGS = (); }; };
+		F4F7B9DE1C42CE77006BBAF1 /* list.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DD1C42CE77006BBAF1 /* list.pdf */; };
+		F4F7B9E01C42CE7E006BBAF1 /* map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */; };
+		F4F7B9E31C42E410006BBAF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */; };
+		F4F7B9E91C42E53F006BBAF1 /* pin.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9E71C42E53F006BBAF1 /* pin.pdf */; };
+		F4F7B9EA1C42E53F006BBAF1 /* udacity.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9E81C42E53F006BBAF1 /* udacity.pdf */; };
+		F4F7B9EF1C42F1AF006BBAF1 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9EE1C42F1AF006BBAF1 /* UdacityClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB0F583C1C457F7700CFA0FE /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		BB0F583E1C458BDE00CFA0FE /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
+		BB0F58401C458F8E00CFA0FE /* UdacityConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConfig.swift; sourceTree = "<group>"; };
 		F464091E1C42CD2200C26E1D /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46409211C42CD2200C26E1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F46409231C42CD2200C26E1D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				F4F7B9EE1C42F1AF006BBAF1 /* UdacityClient.swift */,
+				BB0F583C1C457F7700CFA0FE /* UdacityConstants.swift */,
+				BB0F583E1C458BDE00CFA0FE /* UdacityConvenience.swift */,
+				BB0F58401C458F8E00CFA0FE /* UdacityConfig.swift */,
 			);
 			name = Udacity;
 			sourceTree = "<group>";
@@ -341,6 +350,9 @@
 				F46409261C42CD2200C26E1D /* ListViewController.swift in Sources */,
 				F46409221C42CD2200C26E1D /* AppDelegate.swift in Sources */,
 				F46409241C42CD2200C26E1D /* MapViewController.swift in Sources */,
+				BB0F583F1C458BDE00CFA0FE /* UdacityConvenience.swift in Sources */,
+				BB0F583D1C457F7700CFA0FE /* UdacityConstants.swift in Sources */,
+				BB0F58411C458F8E00CFA0FE /* UdacityConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
