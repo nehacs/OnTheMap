@@ -31,26 +31,24 @@ class UdacityClient: NSObject {
     }
     
     
-    // MARK: GET
+    // MARK: POST
     
-    func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
-//        var mutableParameters = parameters
-//        mutableParameters[ParameterKeys.ApiKey] = Constants.ApiKey
-//        
-//        /* 2/3. Build the URL and configure the request */
-//        let urlString = Constants.BaseURLSecure + method + UdacityClient.escapedParameters(mutableParameters)
-        let urlString = Constants.BaseURLSecure + method + UdacityClient.escapedParameters(parameters)
-//        let url = NSURL(string: urlString)!
-//        let request = NSURLRequest(URL: url)
+        let mutableParameters = parameters
+        
+        /* 2/3. Build the URL and configure the request */
+        let urlString = Constants.BaseURLSecure + method + UdacityClient.escapedParameters(mutableParameters)
         
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = "{\"udacity\": {\"username\": \"neha.cs@gmail.com\", \"password\": \"****\"}}".dataUsingEncoding(NSUTF8StringEncoding)
-        
+        do {
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+        }
+
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
