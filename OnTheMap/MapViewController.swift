@@ -107,6 +107,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    // MARK: - Actions
+    
+    
+    @IBAction func logoutAction(sender: AnyObject) {
+    }
+
+    @IBAction func pinAction(sender: AnyObject) {
+    }
+
+    @IBAction func refreshAction(sender: AnyObject) {
+    }
+
     // MARK: - Sample Data
     
     // Some sample data. This is a dictionary that is more or less similar to the
