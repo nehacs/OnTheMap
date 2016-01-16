@@ -111,8 +111,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     
     @IBAction func logoutAction(sender: AnyObject) {
+        UdacityClient.sharedInstance().logout() { (success, errorString) in
+            if success {
+                self.completeLogout()
+            }
+        }
     }
 
+    func completeLogout() {
+        dispatch_async(dispatch_get_main_queue(), {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") 
+            self.presentViewController(controller, animated: true, completion: nil)
+        })
+    }
+    
     @IBAction func pinAction(sender: AnyObject) {
     }
 

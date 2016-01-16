@@ -35,16 +35,10 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        self.addKeyboardDismissRecognizer()
-//        self.subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-//        self.removeKeyboardDismissRecognizer()
-//        self.unsubscribeToKeyboardNotifications()
     }
     
     

@@ -52,7 +52,6 @@ extension UdacityClient {
             /* 2. Make the request */
             taskForPOSTMethod(Methods.Session, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
                 
-                
                 /* 3. Send the desired value(s) to completion handler */
                 if let error = error {
                     print(error)
@@ -74,4 +73,21 @@ extension UdacityClient {
         }
     }
     
+    func logout(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let parameters = [String: AnyObject]()
+        
+        /* 2. Make the request */
+        taskForDELETEMethod(Methods.Session, parameters: parameters) { JSONResult, error in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandler(success: false, errorString: "Logout Failed.")
+            } else {
+                completionHandler(success: true, errorString: nil)
+            }
+        }
+    }
 }
