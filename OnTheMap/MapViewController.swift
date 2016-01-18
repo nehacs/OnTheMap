@@ -9,18 +9,6 @@
 import UIKit
 import MapKit
 
-/**
-* This view controller demonstrates the objects involved in displaying pins on a map.
-*
-* The map is a MKMapView.
-* The pins are represented by MKPointAnnotation instances.
-*
-* The view controller conforms to the MKMapViewDelegate so that it can receive a method 
-* invocation when a pin annotation is tapped. It accomplishes this using two delegate 
-* methods: one to put a small "info" button on the right side of each pin, and one to
-* respond when the "info" button is tapped.
-*/
-
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     // The map. See the setup in the Storyboard file. Note particularly that the view controller
@@ -110,7 +98,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Actions
     
-    
     @IBAction func logoutAction(sender: AnyObject) {
         UdacityClient.sharedInstance().logout() { (success, errorString) in
             if success {
@@ -129,9 +116,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func pinAction(sender: AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("PinPostingViewController")
+            self.presentViewController(controller, animated: true, completion: nil)
+        })
     }
 
     @IBAction func refreshAction(sender: AnyObject) {
+        self.viewDidLoad()
     }
     
 }

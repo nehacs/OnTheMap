@@ -25,6 +25,7 @@ extension ParseClient {
         
         // MARK: Other constants
         static let Limit = 100
+        static let OrderBy = "updatedAt"
     }
     
     // MARK: Methods
@@ -42,6 +43,7 @@ extension ParseClient {
         static let ApplicationId = "X-Parse-Application-Id"
         
         static let Limit = "limit"
+        static let OrderBy = "order"
     }
     
     // MARK: JSON Body Keys

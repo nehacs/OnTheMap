@@ -55,7 +55,8 @@ class ListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
-        cell.textLabel!.text = location.firstName + " " + location.lastName
+        cell.textLabel!.text = "\(location.firstName) \(location.lastName)"
+        cell.imageView!.image = UIImage(named: "pin")
         cell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
         
         return cell
@@ -91,9 +92,14 @@ class ListViewController: UITableViewController {
     }
 
     @IBAction func pinAction(sender: AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("PinPostingViewController")
+            self.presentViewController(controller, animated: true, completion: nil)
+        })
     }
     
     @IBAction func refreshAction(sender: AnyObject) {
+        self.tableView?.reloadData()
     }
 }
 

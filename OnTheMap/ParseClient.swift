@@ -29,6 +29,7 @@ class ParseClient: NSObject {
         /* 1. Set the parameters */
         var mutableParameters = parameters
         mutableParameters[ParameterKeys.Limit] = Constants.Limit
+        mutableParameters[ParameterKeys.OrderBy] = Constants.OrderBy
         
         /* 2/3. Build the URL and configure the request */
         let urlString = Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)

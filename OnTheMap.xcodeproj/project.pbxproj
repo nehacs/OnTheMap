@@ -22,6 +22,7 @@
 		F464092E1C42CD2200C26E1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F464092C1C42CD2200C26E1D /* LaunchScreen.storyboard */; };
 		F46409391C42CD2200C26E1D /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409381C42CD2200C26E1D /* OnTheMapTests.swift */; };
 		F46409441C42CD2200C26E1D /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46409431C42CD2200C26E1D /* OnTheMapUITests.swift */; };
+		F4C2197F1C4DAF4E005F7EA1 /* PinPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C2197E1C4DAF4E005F7EA1 /* PinPostingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		F4F7B9DE1C42CE77006BBAF1 /* list.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DD1C42CE77006BBAF1 /* list.pdf */; };
 		F4F7B9E01C42CE7E006BBAF1 /* map.pdf in Resources */ = {isa = PBXBuildFile; fileRef = F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */; };
 		F4F7B9E31C42E410006BBAF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */; };
@@ -69,6 +70,7 @@
 		F464093F1C42CD2200C26E1D /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46409431C42CD2200C26E1D /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		F46409451C42CD2200C26E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4C2197E1C4DAF4E005F7EA1 /* PinPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinPostingViewController.swift; sourceTree = "<group>"; };
 		F4F7B9DD1C42CE77006BBAF1 /* list.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = list.pdf; path = assets/list.pdf; sourceTree = "<group>"; };
 		F4F7B9DF1C42CE7E006BBAF1 /* map.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = map.pdf; path = assets/map.pdf; sourceTree = "<group>"; };
 		F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				F46409251C42CD2200C26E1D /* ListViewController.swift */,
 				F46409231C42CD2200C26E1D /* MapViewController.swift */,
 				F4F7B9E21C42E410006BBAF1 /* LoginViewController.swift */,
+				F4C2197E1C4DAF4E005F7EA1 /* PinPostingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				BB0F583F1C458BDE00CFA0FE /* UdacityConvenience.swift in Sources */,
 				BB0F583D1C457F7700CFA0FE /* UdacityConstants.swift in Sources */,
 				F44726EB1C4CA19A00AA88C1 /* Location.swift in Sources */,
+				F4C2197F1C4DAF4E005F7EA1 /* PinPostingViewController.swift in Sources */,
 				BB0F58411C458F8E00CFA0FE /* UdacityConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
