@@ -28,8 +28,7 @@ class ParseClient: NSObject {
     func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         /* 1. Set the parameters */
         var mutableParameters = parameters
-        mutableParameters[ParameterKeys.ApiKey] = Constants.RestApiKey
-        mutableParameters[ParameterKeys.ApplicationId] = Constants.ApplicationId
+        mutableParameters[ParameterKeys.Limit] = Constants.Limit
         
         /* 2/3. Build the URL and configure the request */
         let urlString = Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)

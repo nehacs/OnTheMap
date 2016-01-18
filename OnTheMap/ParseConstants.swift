@@ -23,6 +23,8 @@ extension ParseClient {
         static let BaseURL : String = "http://api.parse.com/1/classes/"
         static let BaseURLSecure : String = "https://api.parse.com/1/classes/"
         
+        // MARK: Other constants
+        static let Limit = 100
     }
     
     // MARK: Methods
@@ -35,17 +37,16 @@ extension ParseClient {
     // MARK: Parameter Keys
     struct ParameterKeys {
         
+        // MARK: Authentication
         static let ApiKey = "X-Parse-REST-API-Key"
         static let ApplicationId = "X-Parse-Application-Id"
         
+        static let Limit = "limit"
     }
     
     // MARK: JSON Body Keys
     struct JSONBodyKeys {
         
-        static let Udacity = "udacity"
-        static let Username = "username"
-        static let Password = "password"
     }
     
     // MARK: JSON Response Keys

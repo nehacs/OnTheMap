@@ -115,6 +115,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         UdacityClient.sharedInstance().logout() { (success, errorString) in
             if success {
                 self.completeLogout()
+            } else {
+                print("Failed to logout")
             }
         }
     }
