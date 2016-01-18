@@ -73,6 +73,8 @@ extension UdacityClient {
         }
     }
     
+    // MARK: Logout (DELETE) Method
+    
     func logout(completionHandler: (success: Bool, errorString: String?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
