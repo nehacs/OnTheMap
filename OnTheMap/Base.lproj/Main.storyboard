@@ -380,18 +380,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="naS-hT-E9R">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.26069367259999998" green="0.47424042570000002" blue="0.78867392020000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" hint=""/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="1" y="179" width="399" height="261"/>
-                                </variation>
-                            </textView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter URL here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qcE-qQ-kHa">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <animations/>
@@ -404,7 +392,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="1" y="138" width="399" height="462"/>
+                                    <rect key="frame" x="0.0" y="138" width="399" height="462"/>
                                 </variation>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-FU-UvN">
@@ -424,6 +412,35 @@
                                     <action selector="submitAction:" destination="eYG-vw-AZE" eventType="touchUpInside" id="Hg3-xr-COO"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFa-XV-dTA">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFu-SG-yaN">
+                                        <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.26069367259999998" green="0.47424042570000002" blue="0.78867392020000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="41" y="8" width="313" height="30"/>
+                                        </variation>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.26069367259999998" green="0.47424042570000002" blue="0.78867392020000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="fFu-SG-yaN"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="-2" y="152" width="394" height="323"/>
+                                    <mask key="subviews">
+                                        <include reference="fFu-SG-yaN"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.76460242146596857" green="0.76460242146596857" blue="0.76460242146596857" alpha="1" colorSpace="calibratedRGB"/>
@@ -451,27 +468,27 @@
                                 <exclude reference="rQH-1c-e41"/>
                                 <exclude reference="f7n-bl-aRW"/>
                                 <exclude reference="njP-cp-5X1"/>
-                                <exclude reference="naS-hT-E9R"/>
                                 <exclude reference="qcE-qQ-kHa"/>
                                 <exclude reference="nlv-Sc-Zuc"/>
                                 <exclude reference="Tbu-FU-UvN"/>
+                                <exclude reference="eFa-XV-dTA"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3RH-Cn-GtP"/>
-                                <exclude reference="Hjl-au-IhV"/>
-                                <exclude reference="Kh5-5S-gZA"/>
-                                <exclude reference="qaz-0x-Tlg"/>
+                                <exclude reference="PS8-YD-KDX"/>
+                                <exclude reference="WfG-XA-8Bz"/>
+                                <exclude reference="l4V-YA-jt6"/>
                                 <exclude reference="CWZ-pZ-X6s"/>
                                 <exclude reference="a5w-f8-hWO"/>
                                 <exclude reference="DXu-T3-C8G"/>
                                 <exclude reference="xgZ-IH-0fq"/>
+                                <exclude reference="Kh5-5S-gZA"/>
+                                <exclude reference="qaz-0x-Tlg"/>
                                 <exclude reference="XGu-os-Y3p"/>
                                 <exclude reference="gqm-6H-eXK"/>
-                                <exclude reference="NSV-qR-07p"/>
                                 <exclude reference="hat-Ck-Nq3"/>
-                                <exclude reference="PS8-YD-KDX"/>
-                                <exclude reference="WfG-XA-8Bz"/>
-                                <exclude reference="l4V-YA-jt6"/>
+                                <exclude reference="NSV-qR-07p"/>
+                                <exclude reference="3RH-Cn-GtP"/>
+                                <exclude reference="Hjl-au-IhV"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -481,27 +498,27 @@
                                 <include reference="rQH-1c-e41"/>
                                 <include reference="f7n-bl-aRW"/>
                                 <include reference="njP-cp-5X1"/>
-                                <include reference="naS-hT-E9R"/>
                                 <include reference="qcE-qQ-kHa"/>
                                 <include reference="nlv-Sc-Zuc"/>
                                 <include reference="Tbu-FU-UvN"/>
+                                <include reference="eFa-XV-dTA"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3RH-Cn-GtP"/>
-                                <include reference="Hjl-au-IhV"/>
-                                <include reference="Kh5-5S-gZA"/>
-                                <include reference="qaz-0x-Tlg"/>
+                                <include reference="PS8-YD-KDX"/>
+                                <include reference="WfG-XA-8Bz"/>
+                                <include reference="l4V-YA-jt6"/>
                                 <include reference="CWZ-pZ-X6s"/>
                                 <include reference="a5w-f8-hWO"/>
                                 <include reference="DXu-T3-C8G"/>
                                 <include reference="xgZ-IH-0fq"/>
+                                <include reference="Kh5-5S-gZA"/>
+                                <include reference="qaz-0x-Tlg"/>
                                 <include reference="XGu-os-Y3p"/>
                                 <include reference="gqm-6H-eXK"/>
-                                <include reference="NSV-qR-07p"/>
                                 <include reference="hat-Ck-Nq3"/>
-                                <include reference="PS8-YD-KDX"/>
-                                <include reference="WfG-XA-8Bz"/>
-                                <include reference="l4V-YA-jt6"/>
+                                <include reference="NSV-qR-07p"/>
+                                <include reference="3RH-Cn-GtP"/>
+                                <include reference="Hjl-au-IhV"/>
                             </mask>
                         </variation>
                     </view>
@@ -509,7 +526,8 @@
                     <connections>
                         <outlet property="enterUrlTextField" destination="qcE-qQ-kHa" id="pJq-gA-gf5"/>
                         <outlet property="findOnMapButton" destination="f7n-bl-aRW" id="94a-WD-kku"/>
-                        <outlet property="locationTextField" destination="naS-hT-E9R" id="Ato-P0-Zuf"/>
+                        <outlet property="locationTextField" destination="fFu-SG-yaN" id="d9U-qk-ub9"/>
+                        <outlet property="locationTextView" destination="eFa-XV-dTA" id="x6Q-mA-xJ2"/>
                         <outlet property="mapView" destination="nlv-Sc-Zuc" id="GqN-6S-dAM"/>
                         <outlet property="submitButton" destination="Tbu-FU-UvN" id="nbN-i2-QR4"/>
                         <outlet property="text1" destination="ba7-h0-xQG" id="CFc-9m-eaC"/>

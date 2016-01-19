@@ -16,7 +16,8 @@ class PinPostingViewController: UIViewController {
     @IBOutlet weak var text3: UITextField!
     
     @IBOutlet weak var enterUrlTextField: UITextField!
-    @IBOutlet weak var locationTextField: UITextView!
+    @IBOutlet weak var locationTextView: UIView!
+    @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var findOnMapButton: UIButton!
     
     @IBOutlet weak var mapView: MKMapView!
@@ -31,6 +32,7 @@ class PinPostingViewController: UIViewController {
         text1.hidden = true
         text2.hidden = true
         text3.hidden = true
+        locationTextView.hidden = true
         locationTextField.hidden = true
         findOnMapButton.hidden = true
         
