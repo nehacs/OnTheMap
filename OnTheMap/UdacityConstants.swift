@@ -23,18 +23,7 @@ extension UdacityClient {
     struct Methods {
         
         // MARK: Account
-        static let Account = "account"
-        static let AccountIDFavoriteMovies = "account/{id}/favorite/movies"
-        static let AccountIDFavorite = "account/{id}/favorite"
-        static let AccountIDWatchlistMovies = "account/{id}/watchlist/movies"
-        static let AccountIDWatchlist = "account/{id}/watchlist"
-        
-        // MARK: Authentication
-        static let AuthenticationTokenNew = "authentication/token/new"
-        static let AuthenticationSessionNew = "authentication/session/new"
-        
-        // MARK: Search
-        static let SearchMovie = "search/movie"
+        static let Users = "users"
         
         // MARK: Config
         static let Config = "configuration"
@@ -79,9 +68,6 @@ extension UdacityClient {
         static let Session = "session"
         static let SessionID = "id"
         
-        // MARK: Account
-        static let UserID = "id"
-        
         // MARK: Config
         static let ConfigBaseImageURL = "base_url"
         static let ConfigSecureBaseImageURL = "secure_base_url"
@@ -89,13 +75,15 @@ extension UdacityClient {
         static let ConfigPosterSizes = "poster_sizes"
         static let ConfigProfileSizes = "profile_sizes"
         
-        // MARK: Movies
-        static let MovieID = "id"
-        static let MovieTitle = "title"
-        static let MoviePosterPath = "poster_path"
-        static let MovieReleaseDate = "release_date"
-        static let MovieReleaseYear = "release_year"
-        static let MovieResults = "results"
+        // MARK: Account
+        static let Account = "account"
+        static let AccountKey = "key"
+        
+        // MARK: UserData
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
+        static let UserId = "key"
         
     }
     

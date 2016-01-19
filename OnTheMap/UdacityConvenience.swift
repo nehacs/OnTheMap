@@ -57,6 +57,7 @@ extension UdacityClient {
                     print(error)
                     completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
                 } else {
+                    // Get session ID
                     if let sessionInfo = JSONResult[UdacityClient.JSONResponseKeys.Session] {
                         if let sessionID = sessionInfo![UdacityClient.JSONResponseKeys.SessionID] as? String {
                             completionHandler(success: true, sessionID: sessionID, errorString: nil)
@@ -67,6 +68,22 @@ extension UdacityClient {
                     } else {
                         print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
                         completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+                    }
+                    
+                    // Get user ID
+                    if let accountInfo = JSONResult[UdacityClient.JSONResponseKeys.Account] {
+                        if let accountKey = accountInfo![UdacityClient.JSONResponseKeys.AccountKey] as? String {
+                            UserData.userId = accountKey
+                            completionHandler(success: true, sessionID: nil, errorString: nil)
+                        } else {
+                            let errorString = "Could not find \(UdacityClient.JSONResponseKeys.AccountKey) in \(JSONResult)"
+                            print(errorString)
+                            completionHandler(success: false, sessionID: nil, errorString: errorString)
+                        }
+                    } else {
+                        let errorString = "Could not find \(UdacityClient.JSONResponseKeys.Account) in \(JSONResult)"
+                        print(errorString)
+                        completionHandler(success: false, sessionID: nil, errorString: errorString)
                     }
                 }
             }
@@ -89,6 +106,56 @@ extension UdacityClient {
                 completionHandler(success: false, errorString: "Logout Failed.")
             } else {
                 completionHandler(success: true, errorString: nil)
+            }
+        }
+    }
+    
+    // MARK: Get User Data (GET) Method
+    func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void) {
+        taskForGETMethod(Methods.Users, userId: UserData.userId) { JSONResult, error in
+            
+            /* Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandler(success: false, errorString: "Failed to get user data.")
+            } else {
+                // Get User Data
+                if let userData = JSONResult[UdacityClient.JSONResponseKeys.User] {
+                    // Get User ID
+                    if let userId = userData![UdacityClient.JSONResponseKeys.UserId] as? String {
+                        UserData.userId = userId
+                        completionHandler(success: true, errorString: nil)
+                    } else {
+                        let errorString = "Could not find \(UdacityClient.JSONResponseKeys.UserId) in \(JSONResult)"
+                        print(errorString)
+                        completionHandler(success: false, errorString: errorString)
+                    }
+                    
+                    // Get First Name
+                    if let firstName = userData![UdacityClient.JSONResponseKeys.FirstName] as? String {
+                        UserData.firstName = firstName
+                        completionHandler(success: true, errorString: nil)
+                    } else {
+                        let errorString = "Could not find \(UdacityClient.JSONResponseKeys.FirstName) in \(JSONResult)"
+                        print(errorString)
+                        completionHandler(success: false, errorString: errorString)
+                    }
+
+                    // Get Last Name
+                    if let lastName = userData![UdacityClient.JSONResponseKeys.LastName] as? String {
+                        UserData.lastName = lastName
+                        completionHandler(success: true, errorString: nil)
+                    } else {
+                        let errorString = "Could not find \(UdacityClient.JSONResponseKeys.UserId) in \(JSONResult)"
+                        print(errorString)
+                        completionHandler(success: false, errorString: errorString)
+                    }
+                    
+                } else {
+                    let errorString = "Could not find \(UdacityClient.JSONResponseKeys.User) in \(JSONResult)"
+                    print(errorString)
+                    completionHandler(success: false, errorString: errorString)
+                }
             }
         }
     }

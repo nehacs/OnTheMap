@@ -49,6 +49,14 @@ extension ParseClient {
     // MARK: JSON Body Keys
     struct JSONBodyKeys {
         
+        static let UniqueKey = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let Longitude = "longitude"
+        static let Latitude = "latitude"
+        static let MediaURL = "mediaURL"
+        
     }
     
     // MARK: JSON Response Keys

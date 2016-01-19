@@ -26,19 +26,19 @@ class ParseClient: NSObject {
     // MARK: GET
     
     func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        /* 1. Set the parameters */
+        /* Set the parameters */
         var mutableParameters = parameters
         mutableParameters[ParameterKeys.Limit] = Constants.Limit
         mutableParameters[ParameterKeys.OrderBy] = Constants.OrderBy
         
-        /* 2/3. Build the URL and configure the request */
+        /* Build the URL and configure the request */
         let urlString = Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         request.HTTPMethod = "GET"
         request.addValue(Constants.RestApiKey, forHTTPHeaderField: ParameterKeys.ApiKey)
         request.addValue(Constants.ApplicationId, forHTTPHeaderField: ParameterKeys.ApplicationId)
         
-        /* 4. Make the request */
+        /* Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
             /* GUARD: Was there an error? */
@@ -65,11 +65,67 @@ class ParseClient: NSObject {
                 return
             }
             
-            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            /* Parse the data and use the data (happens in completion handler) */
             ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
         }
         
-        /* 7. Start the request */
+        /* Start the request */
+        task.resume()
+        
+        return task
+    }
+    
+    // MARK: POST
+    
+    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        /* Set the parameters */
+        var mutableParameters = parameters
+        mutableParameters[ParameterKeys.Limit] = Constants.Limit
+        mutableParameters[ParameterKeys.OrderBy] = Constants.OrderBy
+        
+        /* Build the URL and configure the request */
+        let urlString = Constants.BaseURLSecure + method + ParseClient.escapedParameters(mutableParameters)
+        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(Constants.RestApiKey, forHTTPHeaderField: ParameterKeys.ApiKey)
+        request.addValue(Constants.ApplicationId, forHTTPHeaderField: ParameterKeys.ApplicationId)
+        do {
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
+        }
+        
+        /* Make the request */
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                print("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                } else if let response = response {
+                    print("Your request returned an invalid response! Response: \(response)!")
+                } else {
+                    print("Your request returned an invalid response!")
+                }
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                print("No data was returned by the request!")
+                return
+            }
+            
+            /* Parse the data and use the data (happens in completion handler) */
+            ParseClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+        }
+        
+        /* Start the request */
         task.resume()
         
         return task

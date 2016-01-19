@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 extension ParseClient {
  
@@ -27,11 +28,48 @@ extension ParseClient {
                 if let results = JSONResult[ParseClient.JSONResponseKeys.Results] as? [[String: AnyObject]] {
                     completionHandler(success: true, locations: results, errorString: nil)
                 } else {
-                    print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(JSONResult)")
-                    completionHandler(success: false, locations: [], errorString: "Login Failed (Session ID).")
+                    print("Could not find \(ParseClient.JSONResponseKeys.Results) in \(JSONResult)")
+                    completionHandler(success: false, locations: [], errorString: "Coule not get results.")
                 }
             }
         }
     }
 
+    func postStudentLocation(userId: String, firstName: String, lastName: String, mediaURL: String, mapString: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let parameters = [String: AnyObject]()
+        
+        let geocoder = CLGeocoder()
+        var latitude: String = ""
+        var longitude: String = ""
+        geocoder.geocodeAddressString(mapString, completionHandler: {(placemarks, error) -> Void in
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                latitude = coordinates.latitude.description
+                longitude = coordinates.longitude.description
+            }
+        })
+
+        let jsonBody : [String:AnyObject] = [
+            ParseClient.JSONBodyKeys.UniqueKey: userId,
+            ParseClient.JSONBodyKeys.FirstName: firstName,
+            ParseClient.JSONBodyKeys.LastName: lastName,
+            ParseClient.JSONBodyKeys.Latitude: latitude,
+            ParseClient.JSONBodyKeys.Longitude: longitude,
+            ParseClient.JSONBodyKeys.MapString: mapString,
+            ParseClient.JSONBodyKeys.MediaURL: mediaURL
+        ]
+        
+        /* 2. Make the request */
+        taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandler(success: false, errorString: "Posting of student location Failed.")
+            } else {
+                return
+            }
+        }
+    }
 }
