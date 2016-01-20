@@ -119,13 +119,15 @@ extension UdacityClient {
                 print(error)
                 completionHandler(success: false, errorString: "Failed to get user data.")
             } else {
+                var wasSuccess:Bool = false
                 // Get User Data
                 if let userData = JSONResult[UdacityClient.JSONResponseKeys.User] {
                     // Get User ID
                     if let userId = userData![UdacityClient.JSONResponseKeys.UserId] as? String {
+                        wasSuccess = true
                         UserData.userId = userId
-                        completionHandler(success: true, errorString: nil)
                     } else {
+                        wasSuccess = false
                         let errorString = "Could not find \(UdacityClient.JSONResponseKeys.UserId) in \(JSONResult)"
                         print(errorString)
                         completionHandler(success: false, errorString: errorString)
@@ -133,9 +135,10 @@ extension UdacityClient {
                     
                     // Get First Name
                     if let firstName = userData![UdacityClient.JSONResponseKeys.FirstName] as? String {
+                        wasSuccess = true
                         UserData.firstName = firstName
-                        completionHandler(success: true, errorString: nil)
                     } else {
+                        wasSuccess = false
                         let errorString = "Could not find \(UdacityClient.JSONResponseKeys.FirstName) in \(JSONResult)"
                         print(errorString)
                         completionHandler(success: false, errorString: errorString)
@@ -143,12 +146,17 @@ extension UdacityClient {
 
                     // Get Last Name
                     if let lastName = userData![UdacityClient.JSONResponseKeys.LastName] as? String {
+                        wasSuccess = true
                         UserData.lastName = lastName
-                        completionHandler(success: true, errorString: nil)
                     } else {
+                        wasSuccess = false
                         let errorString = "Could not find \(UdacityClient.JSONResponseKeys.UserId) in \(JSONResult)"
                         print(errorString)
                         completionHandler(success: false, errorString: errorString)
+                    }
+                    
+                    if wasSuccess {
+                        completionHandler(success: true, errorString: nil)
                     }
                     
                 } else {

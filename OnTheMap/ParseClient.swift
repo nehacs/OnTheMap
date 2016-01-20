@@ -89,11 +89,9 @@ class ParseClient: NSObject {
         request.addValue(Constants.RestApiKey, forHTTPHeaderField: ParameterKeys.ApiKey)
         request.addValue(Constants.ApplicationId, forHTTPHeaderField: ParameterKeys.ApplicationId)
         do {
-//            request.HTTPBody = "{\"uniqueKey\": \"208050726\", \"firstName\": \"Neha\", \"lastName\": \"Agarwal\",\"mapString\": \"test\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 58.6744186, \"longitude\": 25.3943712}".dataUsingEncoding(NSUTF8StringEncoding)
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
         }
         
-        print(request)
         /* Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             

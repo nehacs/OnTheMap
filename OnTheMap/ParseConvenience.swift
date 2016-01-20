@@ -40,13 +40,11 @@ extension ParseClient {
         let parameters = [String: AnyObject]()
         
         let geocoder = CLGeocoder()
-        var latitude: String = ""
-        var longitude: String = ""
         geocoder.geocodeAddressString(mapString, completionHandler: {(placemarks, error) -> Void in
             if let placemark = placemarks?.first {
                 let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                latitude = coordinates.latitude.description
-                longitude = coordinates.longitude.description
+                let latitude = coordinates.latitude
+                let longitude = coordinates.longitude
                 let jsonBody : [String:AnyObject] = [
                     ParseClient.JSONBodyKeys.UniqueKey: userId,
                     ParseClient.JSONBodyKeys.FirstName: firstName,
