@@ -65,15 +65,7 @@ class ListViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        /* Push the movie detail view */
-//        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MovieDetailViewController") as! MovieDetailViewController
-//        controller.movie = movies[indexPath.row]
-//        self.navigationController!.pushViewController(controller, animated: true)
-    }
-    
     @IBAction func logoutAction(sender: AnyObject) {
         UdacityClient.sharedInstance().logout() { (success, errorString) in
             if success {

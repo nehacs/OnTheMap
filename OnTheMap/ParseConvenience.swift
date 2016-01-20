@@ -47,29 +47,28 @@ extension ParseClient {
                 let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                 latitude = coordinates.latitude.description
                 longitude = coordinates.longitude.description
+                let jsonBody : [String:AnyObject] = [
+                    ParseClient.JSONBodyKeys.UniqueKey: userId,
+                    ParseClient.JSONBodyKeys.FirstName: firstName,
+                    ParseClient.JSONBodyKeys.LastName: lastName,
+                    ParseClient.JSONBodyKeys.Latitude: latitude,
+                    ParseClient.JSONBodyKeys.Longitude: longitude,
+                    ParseClient.JSONBodyKeys.MapString: mapString,
+                    ParseClient.JSONBodyKeys.MediaURL: mediaURL
+                ]
+                
+                /* 2. Make the request */
+                self.taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
+                    
+                    /* 3. Send the desired value(s) to completion handler */
+                    if let error = error {
+                        print(error)
+                        completionHandler(success: false, errorString: "Posting of student location Failed.")
+                    } else {
+                        completionHandler(success: true, errorString: nil)
+                    }
+                }
             }
         })
-
-        let jsonBody : [String:AnyObject] = [
-            ParseClient.JSONBodyKeys.UniqueKey: userId,
-            ParseClient.JSONBodyKeys.FirstName: firstName,
-            ParseClient.JSONBodyKeys.LastName: lastName,
-            ParseClient.JSONBodyKeys.Latitude: latitude,
-            ParseClient.JSONBodyKeys.Longitude: longitude,
-            ParseClient.JSONBodyKeys.MapString: mapString,
-            ParseClient.JSONBodyKeys.MediaURL: mediaURL
-        ]
-        
-        /* 2. Make the request */
-        taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
-            
-            /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
-                print(error)
-                completionHandler(success: false, errorString: "Posting of student location Failed.")
-            } else {
-                return
-            }
-        }
     }
 }
