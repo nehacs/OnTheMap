@@ -45,7 +45,8 @@ class LoginViewController: UIViewController {
     // MARK: Login
     
     @IBAction func loginButtonTouch(sender: AnyObject) {
-        UdacityClient.sharedInstance().authenticateWithViewController(self) { (success, errorString) in
+        self.debugTextLabel.text = ""
+        UdacityClient.sharedInstance().login(emailTextField.text!, password: passwordTextField.text!) { (success, errorString) in
             if success {
                 self.completeLogin()
             } else {
@@ -72,6 +73,9 @@ class LoginViewController: UIViewController {
         })
     }
     
-    // MARK: Udacity API
-    
+    @IBAction func signupAction(sender: AnyObject) {
+        let app = UIApplication.sharedApplication()
+        let signupUrlString = "https://www.udacity.com/account/auth#!/signin"
+        app.openURL(NSURL(string: signupUrlString)!)
+    }
 }

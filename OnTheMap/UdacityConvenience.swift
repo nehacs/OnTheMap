@@ -12,32 +12,15 @@ import Foundation
 
 extension UdacityClient {
     
-    // MARK: Authentication/Login (POST) Methods
+    // MARK: Login (POST) Methods
 
-    func authenticateWithViewController(hostViewController: LoginViewController, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        
-        self.login(hostViewController.emailTextField.text!, password: hostViewController.passwordTextField.text!) { (success, sessionID, errorString) in
-            
-            if success {
-                
-                /* Success! We have the sessionID! */
-                self.sessionID = sessionID
-                
-                completionHandler(success: success, errorString: errorString)
-            } else {
-                completionHandler(success: success, errorString: errorString)
-            }
-        }
-    }
-    
-    func login(email: String, password: String, completionHandler: (success: Bool, sessionID: String?, errorString: String?) -> Void) {
+    func login(email: String, password: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
         
         if email.isEmpty {
-            completionHandler(success: false, sessionID: nil, errorString: "Username Empty.")
+            completionHandler(success: false, errorString: "Username Empty.")
         } else if password.isEmpty {
-            completionHandler(success: false, sessionID: nil, errorString: "Password Empty.")
+            completionHandler(success: false, errorString: "Password Empty.")
         } else {
-            
             
             /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
             let parameters = [String: AnyObject]()
@@ -55,35 +38,22 @@ extension UdacityClient {
                 /* 3. Send the desired value(s) to completion handler */
                 if let error = error {
                     print(error)
-                    completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
+                    completionHandler(success: false, errorString: "Login Failed.")
                 } else {
-                    // Get session ID
-                    if let sessionInfo = JSONResult[UdacityClient.JSONResponseKeys.Session] {
-                        if let sessionID = sessionInfo![UdacityClient.JSONResponseKeys.SessionID] as? String {
-                            completionHandler(success: true, sessionID: sessionID, errorString: nil)
-                        } else {
-                            print("Could not find \(UdacityClient.JSONResponseKeys.SessionID) in \(JSONResult)")
-                            completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
-                        }
-                    } else {
-                        print("Could not find \(UdacityClient.JSONResponseKeys.Session) in \(JSONResult)")
-                        completionHandler(success: false, sessionID: nil, errorString: "Login Failed (Session ID).")
-                    }
-                    
                     // Get user ID
                     if let accountInfo = JSONResult[UdacityClient.JSONResponseKeys.Account] {
                         if let accountKey = accountInfo![UdacityClient.JSONResponseKeys.AccountKey] as? String {
                             UserData.userId = accountKey
-                            completionHandler(success: true, sessionID: nil, errorString: nil)
+                            completionHandler(success: true, errorString: nil)
                         } else {
                             let errorString = "Could not find \(UdacityClient.JSONResponseKeys.AccountKey) in \(JSONResult)"
                             print(errorString)
-                            completionHandler(success: false, sessionID: nil, errorString: errorString)
+                            completionHandler(success: false, errorString: errorString)
                         }
                     } else {
                         let errorString = "Could not find \(UdacityClient.JSONResponseKeys.Account) in \(JSONResult)"
                         print(errorString)
-                        completionHandler(success: false, sessionID: nil, errorString: errorString)
+                        completionHandler(success: false, errorString: errorString)
                     }
                 }
             }

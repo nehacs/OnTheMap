@@ -52,6 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     annotations.append(annotation)
                 }
                 
+                self.mapView.delegate = self
                 // When the array is complete, we add the annotations to the map.
                 self.mapView.addAnnotations(annotations)
             } else {
@@ -62,9 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - MKMapViewDelegate
 
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
+    // Here we create a view with a "right callout accessory view". 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"

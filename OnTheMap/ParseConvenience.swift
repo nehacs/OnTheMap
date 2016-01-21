@@ -29,7 +29,7 @@ extension ParseClient {
                     completionHandler(success: true, locations: results, errorString: nil)
                 } else {
                     print("Could not find \(ParseClient.JSONResponseKeys.Results) in \(JSONResult)")
-                    completionHandler(success: false, locations: [], errorString: "Coule not get results.")
+                    completionHandler(success: false, locations: [], errorString: "Could not get results.")
                 }
             }
         }

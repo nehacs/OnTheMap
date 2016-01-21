@@ -78,7 +78,7 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitAction(sender: AnyObject) {
         if (self.enterUrlTextField.text!.isEmpty) {
             self.errorTextField.hidden = false
-            self.errorTextField.text = "Please enter a location"
+            self.errorTextField.text = "Please enter a URL"
         } else {
             self.errorTextField.hidden = true
             UdacityClient.sharedInstance().getUserData() { (success, errorString) in
@@ -95,12 +95,19 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
         dispatch_async(dispatch_get_main_queue(), {
             ParseClient.sharedInstance().postStudentLocation(UserData.userId, firstName: UserData.firstName, lastName: UserData.lastName, mediaURL: self.enterUrlTextField.text!, mapString: self.locationTextField.text!) { (success, errorString) in
                 if success {
-//                    let tabViews = self.storyboard!.instantiateViewControllerWithIdentifier("MapTabBarController") as! UITabBarController
-//                    self.presentViewController(tabViews, animated: false, completion: nil)
+                    self.goBackToTabs()
                 } else {
-                    print("Failed to post student location")
+                    self.errorTextField.hidden = false
+                    self.errorTextField.text = "Failed to post student location"
                 }
             }
+        })
+    }
+    
+    func goBackToTabs() {
+        dispatch_async(dispatch_get_main_queue(), {
+            let tabViews = self.storyboard!.instantiateViewControllerWithIdentifier("MapTabBarController") as! UITabBarController
+            self.presentViewController(tabViews, animated: false, completion: nil)
         })
     }
 }
