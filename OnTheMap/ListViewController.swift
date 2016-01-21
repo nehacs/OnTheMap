@@ -67,7 +67,7 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let studetn = students[indexPath.row]
+        let student = students[indexPath.row]
         let app = UIApplication.sharedApplication()
         app.openURL(NSURL(string: student.link)!)
     }
