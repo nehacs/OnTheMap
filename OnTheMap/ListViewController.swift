@@ -16,7 +16,7 @@ class ListViewController: UITableViewController {
     var appDelegate: AppDelegate!
     var session: NSURLSession!
     
-    var locations: [Location] = [Location]()
+    var students: [StudentInformation] = [StudentInformation]()
     
     // MARK: Life Cycle
     
@@ -36,7 +36,7 @@ class ListViewController: UITableViewController {
         
         ParseClient.sharedInstance().getLocations() { (success, locations, errorString) in
             if success {
-                self.locations = Location.locationsFromResults(locations)
+                self.students = StudentInformation.studentsFromResults(locations)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                 }
@@ -51,7 +51,7 @@ class ListViewController: UITableViewController {
         
         /* Get cell type */
         let cellReuseIdentifier = "LocationTableViewCell"
-        let location = locations[indexPath.row]
+        let location = students[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -63,13 +63,13 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return students.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let location = locations[indexPath.row]
+        let studetn = students[indexPath.row]
         let app = UIApplication.sharedApplication()
-        app.openURL(NSURL(string: location.link)!)
+        app.openURL(NSURL(string: student.link)!)
     }
     
     @IBAction func logoutAction(sender: AnyObject) {

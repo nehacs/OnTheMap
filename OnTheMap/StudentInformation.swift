@@ -8,9 +8,9 @@
 
 import Foundation
 
-// MARK: - Location
+// MARK: - StudentInformation
 
-struct Location {
+struct StudentInformation {
     
     // MARK: Properties
     var firstName = ""
@@ -23,15 +23,15 @@ struct Location {
         link = dictionary["mediaURL"] as! String
     }
     
-    static func locationsFromResults(results: [[String : AnyObject]]) -> [Location] {
+    static func studentsFromResults(results: [[String : AnyObject]]) -> [StudentInformation] {
         
-        var locations = [Location]()
+        var students = [StudentInformation]()
         
         /* Iterate through array of dictionaries; each Movie is a dictionary */
         for result in results {
-            locations.append(Location(dictionary: result))
+            students.append(StudentInformation(dictionary: result))
         }
         
-        return locations
+        return students
     }
 }
