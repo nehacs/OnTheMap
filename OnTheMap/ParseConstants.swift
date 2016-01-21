@@ -25,7 +25,7 @@ extension ParseClient {
         
         // MARK: Other constants
         static let Limit = 100
-        static let OrderBy = "updatedAt"
+        static let OrderBy = "-updatedAt"
     }
     
     // MARK: Methods

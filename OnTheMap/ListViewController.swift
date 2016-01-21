@@ -65,7 +65,13 @@ class ListViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
     }
-        
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let location = locations[indexPath.row]
+        let app = UIApplication.sharedApplication()
+        app.openURL(NSURL(string: location.link)!)
+    }
+    
     @IBAction func logoutAction(sender: AnyObject) {
         UdacityClient.sharedInstance().logout() { (success, errorString) in
             if success {
