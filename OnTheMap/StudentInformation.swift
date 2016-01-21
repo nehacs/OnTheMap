@@ -16,11 +16,15 @@ struct StudentInformation {
     var firstName = ""
     var lastName = ""
     var link = ""
+    var latitude = 0.0
+    var longitude = 0.0
 
     init(dictionary: [String: AnyObject]) {
         firstName = dictionary["firstName"] as! String
         lastName = dictionary["lastName"] as! String
         link = dictionary["mediaURL"] as! String
+        latitude = dictionary["latitude"] as! Double
+        longitude = dictionary["longitude"] as! Double
     }
     
     static func studentsFromResults(results: [[String : AnyObject]]) -> [StudentInformation] {
