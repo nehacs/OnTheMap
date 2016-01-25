@@ -33,12 +33,20 @@ extension UdacityClient {
             ]
             
             /* 2. Make the request */
-            taskForPOSTMethod(Methods.Session, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
+            taskForPOSTMethod(Methods.Session, parameters: parameters, jsonBody: jsonBody) { JSONResult, error, code in
                 
                 /* 3. Send the desired value(s) to completion handler */
                 if let error = error {
-                    print(error)
-                    completionHandler(success: false, errorString: "Login Failed.")
+                    var errorString = error
+                    if code != 0 {
+                        if (code == 403) {
+                            errorString = "Invalid login credentials. Check your ID and password"
+                        } else {
+                            errorString = "Poor network connection. Please try again."
+                        }
+                    }
+                    print(errorString)
+                    completionHandler(success: false, errorString: errorString)
                 } else {
                     // Get user ID
                     if let accountInfo = JSONResult[UdacityClient.JSONResponseKeys.Account] {
@@ -68,7 +76,7 @@ extension UdacityClient {
         let parameters = [String: AnyObject]()
         
         /* 2. Make the request */
-        taskForDELETEMethod(Methods.Session, parameters: parameters) { JSONResult, error in
+        taskForDELETEMethod(Methods.Session, parameters: parameters) { JSONResult, error, code in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -82,7 +90,7 @@ extension UdacityClient {
     
     // MARK: Get User Data (GET) Method
     func getUserData(completionHandler: (success: Bool, errorString: String?) -> Void) {
-        taskForGETMethod(Methods.Users, userId: UserData.userId) { JSONResult, error in
+        taskForGETMethod(Methods.Users, userId: UserData.userId) { JSONResult, error, code in
             
             /* Send the desired value(s) to completion handler */
             if let error = error {

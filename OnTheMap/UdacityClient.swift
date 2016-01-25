@@ -33,7 +33,7 @@ class UdacityClient: NSObject {
     
     // MARK: GET
     
-    func taskForGETMethod(method: String, userId: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(method: String, userId: String, completionHandler: (result: AnyObject!, error: String?, code: Int) -> Void) -> NSURLSessionDataTask {
         /* Build the URL and configure the request */
         let urlString = Constants.BaseURLSecure + method + "/" + userId
         
@@ -79,7 +79,7 @@ class UdacityClient: NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: String?, code: Int) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
         let mutableParameters = parameters
@@ -98,21 +98,32 @@ class UdacityClient: NSObject {
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
+            var code = 0
+            var errorString = ""
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("There was an error with your request: \(error)")
+                errorString = "There was an error with your request: \(error)"
+                print(errorString)
+                completionHandler(result: nil, error: errorString, code: code)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    code = response.statusCode
+                    errorString = "Your request returned an invalid response! Status code: \(response.statusCode)!"
+                    print(errorString)
                 } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
+                    code = 0
+                    errorString = "Your request returned an invalid response! Response: \(response)!"
+                    print(errorString)
                 } else {
-                    print("Your request returned an invalid response!")
+                    code = 0
+                    errorString = "Your request returned an invalid response!"
+                    print(errorString)
                 }
+                completionHandler(result: nil, error: errorString, code: code)
                 return
             }
             
@@ -134,7 +145,7 @@ class UdacityClient: NSObject {
     
     // MARK: DELETE
     
-    func taskForDELETEMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForDELETEMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: String?, code: Int) -> Void) -> NSURLSessionDataTask {
         /* 1. Set the parameters */
         let mutableParameters = parameters
         
@@ -190,7 +201,7 @@ class UdacityClient: NSObject {
     }
     
     /* Helper: Given raw JSON, return a usable Foundation object */
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: String?, code: Int) -> Void) {
         
         let range = NSMakeRange(5, data.length)
         let trimmed_data = NSData(data: data.subdataWithRange(range))
@@ -198,11 +209,10 @@ class UdacityClient: NSObject {
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(trimmed_data, options: .AllowFragments)
         } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandler(result: nil, error: NSError(domain: "parseJSONWithCompletionHandler", code: 1, userInfo: userInfo))
+            completionHandler(result: nil, error: "Could not parse the data as JSON: '\(data)'", code: 1)
         }
         
-        completionHandler(result: parsedResult, error: nil)
+        completionHandler(result: parsedResult, error: nil, code: 0)
     }
     
     /* Helper function: Given a dictionary of parameters, convert to a string for a url */

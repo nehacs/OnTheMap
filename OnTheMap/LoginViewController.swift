@@ -50,7 +50,13 @@ class LoginViewController: UIViewController {
             if success {
                 self.completeLogin()
             } else {
-                self.displayError(errorString)
+                dispatch_async(dispatch_get_main_queue()) {
+                    let alert = UIAlertController(title: "Udacity login failed", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                        // Do nothing
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
             }
         }
     }
