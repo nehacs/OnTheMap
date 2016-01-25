@@ -24,6 +24,8 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         self.locationTextField.delegate = self
     }
@@ -41,6 +43,7 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
         if (locationTextField.text!.isEmpty) {
             self.errorTextField.text = "Please enter a location."
         } else {
+            activityIndicatorView.startAnimating()
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(locationTextField.text!, completionHandler: {(placemarks, error) -> Void in
                 if((error) != nil){
@@ -70,6 +73,7 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
                     annotation.coordinate = coordinates
                     self.mapView.addAnnotation(annotation)
                     self.mapView.centerCoordinate = annotation.coordinate;
+                    self.activityIndicatorView.stopAnimating()
                 }
             })
         }
@@ -97,8 +101,13 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
                 if success {
                     self.goBackToTabs()
                 } else {
-                    self.errorTextField.hidden = false
-                    self.errorTextField.text = "Failed to post student location"
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let alert = UIAlertController(title: "Failed to post student location", message: "Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                            // Do nothing
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
                 }
             }
         })

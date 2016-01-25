@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GNR-7a-V4x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eYG-vw-AZE">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -426,19 +426,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="43" y="175" width="313" height="30"/>
-                                </variation>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="hHl-4D-HQL">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                            </activityIndicatorView>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xm6-27-vBj">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <color key="backgroundColor" red="0.26069367259999998" green="0.47424042570000002" blue="0.78867392020000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="75" y="285" width="250" height="30"/>
-                                </variation>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.76460242146596857" green="0.76460242146596857" blue="0.76460242146596857" alpha="1" colorSpace="calibratedRGB"/>
@@ -460,8 +457,10 @@
                             <constraint firstItem="rQH-1c-e41" firstAttribute="centerX" secondItem="BEv-AD-T1a" secondAttribute="centerX" id="gqm-6H-eXK"/>
                             <constraint firstItem="f7n-bl-aRW" firstAttribute="centerX" secondItem="BEv-AD-T1a" secondAttribute="centerX" id="hat-Ck-Nq3"/>
                             <constraint firstItem="njP-cp-5X1" firstAttribute="top" secondItem="8aS-k8-0af" secondAttribute="bottom" constant="-5" id="l4V-YA-jt6"/>
+                            <constraint firstItem="hHl-4D-HQL" firstAttribute="centerX" secondItem="BEv-AD-T1a" secondAttribute="centerX" id="ogm-ut-hLM"/>
                             <constraint firstItem="C1k-bs-EsO" firstAttribute="top" secondItem="ba7-h0-xQG" secondAttribute="bottom" constant="-1" id="qaz-0x-Tlg"/>
                             <constraint firstItem="qcE-qQ-kHa" firstAttribute="top" secondItem="8aS-k8-0af" secondAttribute="bottom" constant="69" id="xgZ-IH-0fq"/>
+                            <constraint firstItem="hHl-4D-HQL" firstAttribute="top" secondItem="8aS-k8-0af" secondAttribute="bottom" constant="270" id="yPA-dD-YzW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -475,6 +474,7 @@
                                 <exclude reference="Tbu-FU-UvN"/>
                                 <exclude reference="eFa-XV-dTA"/>
                                 <exclude reference="fFu-SG-yaN"/>
+                                <exclude reference="hHl-4D-HQL"/>
                                 <exclude reference="xm6-27-vBj"/>
                             </mask>
                             <mask key="constraints">
@@ -485,14 +485,16 @@
                                 <exclude reference="a5w-f8-hWO"/>
                                 <exclude reference="DXu-T3-C8G"/>
                                 <exclude reference="xgZ-IH-0fq"/>
-                                <exclude reference="7hQ-WE-ma0"/>
-                                <exclude reference="Fsh-Jk-I21"/>
                                 <exclude reference="Kh5-5S-gZA"/>
                                 <exclude reference="qaz-0x-Tlg"/>
                                 <exclude reference="XGu-os-Y3p"/>
                                 <exclude reference="gqm-6H-eXK"/>
+                                <exclude reference="7hQ-WE-ma0"/>
+                                <exclude reference="Fsh-Jk-I21"/>
                                 <exclude reference="bMh-Uj-oH2"/>
                                 <exclude reference="gir-Vc-p9H"/>
+                                <exclude reference="ogm-ut-hLM"/>
+                                <exclude reference="yPA-dD-YzW"/>
                                 <exclude reference="hat-Ck-Nq3"/>
                                 <exclude reference="NSV-qR-07p"/>
                                 <exclude reference="3RH-Cn-GtP"/>
@@ -511,6 +513,7 @@
                                 <include reference="Tbu-FU-UvN"/>
                                 <include reference="eFa-XV-dTA"/>
                                 <include reference="fFu-SG-yaN"/>
+                                <include reference="hHl-4D-HQL"/>
                                 <include reference="xm6-27-vBj"/>
                             </mask>
                             <mask key="constraints">
@@ -521,14 +524,16 @@
                                 <include reference="a5w-f8-hWO"/>
                                 <include reference="DXu-T3-C8G"/>
                                 <include reference="xgZ-IH-0fq"/>
-                                <include reference="7hQ-WE-ma0"/>
-                                <include reference="Fsh-Jk-I21"/>
                                 <include reference="Kh5-5S-gZA"/>
                                 <include reference="qaz-0x-Tlg"/>
                                 <include reference="XGu-os-Y3p"/>
                                 <include reference="gqm-6H-eXK"/>
+                                <include reference="7hQ-WE-ma0"/>
+                                <include reference="Fsh-Jk-I21"/>
                                 <include reference="bMh-Uj-oH2"/>
                                 <include reference="gir-Vc-p9H"/>
+                                <include reference="ogm-ut-hLM"/>
+                                <include reference="yPA-dD-YzW"/>
                                 <include reference="hat-Ck-Nq3"/>
                                 <include reference="NSV-qR-07p"/>
                                 <include reference="3RH-Cn-GtP"/>
@@ -538,6 +543,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="KhB-qU-DNU"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="hHl-4D-HQL" id="mhm-9T-jBq"/>
                         <outlet property="enterUrlTextField" destination="qcE-qQ-kHa" id="pJq-gA-gf5"/>
                         <outlet property="errorTextField" destination="xm6-27-vBj" id="JOL-YV-hde"/>
                         <outlet property="findOnMapButton" destination="f7n-bl-aRW" id="94a-WD-kku"/>
