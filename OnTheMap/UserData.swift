@@ -14,4 +14,6 @@ struct UserData {
     static var firstName = ""
     static var lastName = ""
     static var userId = ""
+    
+    static var students: [StudentInformation] = [StudentInformation]()
 }

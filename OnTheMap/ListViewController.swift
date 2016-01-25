@@ -16,8 +16,6 @@ class ListViewController: UITableViewController {
     var appDelegate: AppDelegate!
     var session: NSURLSession!
     
-    var students: [StudentInformation] = [StudentInformation]()
-    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -36,11 +34,18 @@ class ListViewController: UITableViewController {
         
         ParseClient.sharedInstance().getLocations() { (success, locations, errorString) in
             if success {
-                self.students = StudentInformation.studentsFromResults(locations)
+                UserData.students = StudentInformation.studentsFromResults(locations)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                 }
-                
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    let alert = UIAlertController(title: "Udacity download failed", message: "Unable to get student locations. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                        // Do nothing
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -51,7 +56,7 @@ class ListViewController: UITableViewController {
         
         /* Get cell type */
         let cellReuseIdentifier = "LocationTableViewCell"
-        let location = students[indexPath.row]
+        let location = UserData.students[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -63,11 +68,11 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return students.count
+        return UserData.students.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let student = students[indexPath.row]
+        let student = UserData.students[indexPath.row]
         let app = UIApplication.sharedApplication()
         app.openURL(NSURL(string: student.link)!)
     }

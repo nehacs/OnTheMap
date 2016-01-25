@@ -28,6 +28,7 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         self.locationTextField.delegate = self
+        self.enterUrlTextField.delegate = self
     }
     
     @IBAction func cancelAction(sender: AnyObject) {
@@ -37,6 +38,12 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         self.errorTextField.hidden = true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.locationTextField.resignFirstResponder()
+        self.enterUrlTextField.resignFirstResponder()
+        return true
     }
     
     @IBAction func findOnMapAction(sender: AnyObject) {

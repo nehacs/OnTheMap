@@ -15,19 +15,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // is set up as the map view's delegate.
     
     @IBOutlet weak var mapView: MKMapView!
-    var students: [StudentInformation] = [StudentInformation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ParseClient.sharedInstance().getLocations() { (success, locations, errorString) in
             if success {
-                self.students = StudentInformation.studentsFromResults(locations)
+                UserData.students = StudentInformation.studentsFromResults(locations)
                 dispatch_async(dispatch_get_main_queue(), {
                     self.loadMapAnnotations()
                 })
             } else {
-                // TODO: Display alert
+                dispatch_async(dispatch_get_main_queue()) {
+                    let alert = UIAlertController(title: "Udacity download failed", message: "Unable to get student locations. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                        // Do nothing
+                    }))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
             }
         }
         
@@ -42,7 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // to create map annotations. This would be more stylish if the dictionaries were being
         // used to create custom structs. Perhaps StudentLocation structs.
         
-        for student in self.students {
+        for student in UserData.students {
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
             let coordinate = CLLocationCoordinate2D(latitude: student.latitude, longitude: student.longitude)
