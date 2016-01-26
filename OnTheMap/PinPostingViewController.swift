@@ -56,9 +56,21 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
                 if((error) != nil){
                     self.errorTextField.hidden = false
                     if (error?.code == 8) {
-                        self.errorTextField.text = "Invalid location"
+                        dispatch_async(dispatch_get_main_queue()) {
+                            let alert = UIAlertController(title: "Failed to find location", message: "Invalid location.", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                                // Do nothing
+                            }))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        }
                     } else {
-                        self.errorTextField.text = "Unknown error in location"
+                        dispatch_async(dispatch_get_main_queue()) {
+                            let alert = UIAlertController(title: "Failed to find location", message: "Unknown error in location.", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                                // Do nothing
+                            }))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        }
                     }
                 }
                 if let placemark = placemarks?.first {
@@ -80,8 +92,8 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
                     annotation.coordinate = coordinates
                     self.mapView.addAnnotation(annotation)
                     self.mapView.centerCoordinate = annotation.coordinate;
-                    self.activityIndicatorView.stopAnimating()
                 }
+                self.activityIndicatorView.stopAnimating()
             })
         }
     }

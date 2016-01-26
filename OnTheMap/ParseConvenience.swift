@@ -18,19 +18,19 @@ extension ParseClient {
         let parameters = [String: AnyObject]()
         
         /* 2. Make the request */
-        taskForGETMethod(Methods.StudentLocation, parameters: parameters) { JSONResult, error in
+        taskForGETMethod(Methods.StudentLocation, parameters: parameters) { JSONResult, success, error in
             
             /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
-                print(error)
-                completionHandler(success: false, locations: [], errorString: "Request Failed.")
-            } else {
+            if success {
                 if let results = JSONResult[ParseClient.JSONResponseKeys.Results] as? [[String: AnyObject]] {
                     completionHandler(success: true, locations: results, errorString: nil)
                 } else {
                     print("Could not find \(ParseClient.JSONResponseKeys.Results) in \(JSONResult)")
                     completionHandler(success: false, locations: [], errorString: "Could not get results.")
                 }
+            } else {
+                print(error)
+                completionHandler(success: false, locations: [], errorString: "Request Failed.")
             }
         }
     }
@@ -56,15 +56,10 @@ extension ParseClient {
                 ]
                 
                 /* 2. Make the request */
-                self.taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
+                self.taskForPOSTMethod(Methods.StudentLocation, parameters: parameters, jsonBody: jsonBody) { JSONResult, success, error in
                     
                     /* 3. Send the desired value(s) to completion handler */
-                    if let error = error {
-                        print(error)
-                        completionHandler(success: false, errorString: "Posting of student location Failed.")
-                    } else {
-                        completionHandler(success: true, errorString: nil)
-                    }
+                    completionHandler(success: success, errorString: error)
                 }
             }
         })

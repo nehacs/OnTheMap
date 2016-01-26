@@ -110,16 +110,14 @@ class UdacityClient: NSObject {
                 if let response = response as? NSHTTPURLResponse {
                     code = response.statusCode
                     errorString = "Your request returned an invalid response! Status code: \(response.statusCode)!"
-                    print(errorString)
                 } else if let response = response {
                     code = 0
                     errorString = "Your request returned an invalid response! Response: \(response)!"
-                    print(errorString)
                 } else {
                     code = 0
                     errorString = "Your request returned an invalid response!"
-                    print(errorString)
                 }
+                print(errorString)
                 completionHandler(result: nil, error: errorString, code: code)
                 return
             }

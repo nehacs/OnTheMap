@@ -25,7 +25,7 @@ class ParseClient: NSObject {
 
     // MARK: GET
     
-    func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, success:Bool, error: String?) -> Void) -> NSURLSessionDataTask {
         /* Set the parameters */
         var mutableParameters = parameters
         mutableParameters[ParameterKeys.Limit] = Constants.Limit
@@ -40,22 +40,27 @@ class ParseClient: NSObject {
         
         /* Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
+
+            var errorString = ""
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("There was an error with your request: \(error)")
+                errorString = "There was an error with your request: \(error)"
+                print(errorString)
+                completionHandler(result: nil, success: false, error: errorString)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    errorString = "Your request returned an invalid response! Status code: \(response.statusCode)!"
                 } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
+                    errorString = "Your request returned an invalid response! Response: \(response)!"
                 } else {
-                    print("Your request returned an invalid response!")
+                    errorString = "Your request returned an invalid response!"
                 }
+                print(errorString)
+                completionHandler(result: nil, success: false, error: errorString)
                 return
             }
             
@@ -77,7 +82,7 @@ class ParseClient: NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, success: Bool, error: String?) -> Void) -> NSURLSessionDataTask {
         /* Set the parameters */
         let mutableParameters = parameters
         
@@ -94,22 +99,31 @@ class ParseClient: NSObject {
         
         /* Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
+
+            var errorString = ""
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("There was an error with your request: \(error)")
+                print("here 3")
+                errorString = "There was an error with your request: \(error)"
+                print(errorString)
+                completionHandler(result: nil, success: false, error: errorString)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    print("here 4")
+                    errorString = "Your request returned an invalid response! Status code: \(response.statusCode)!"
                 } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
+                    print("here 5")
+                    errorString = "Your request returned an invalid response! Response: \(response)!"
                 } else {
-                    print("Your request returned an invalid response!")
+                    print("here 6")
+                    errorString = "Your request returned an invalid response!"
                 }
+                print(errorString)
+                completionHandler(result: nil, success: false, error: errorString)
                 return
             }
             
@@ -130,17 +144,18 @@ class ParseClient: NSObject {
     }
     
     /* Helper: Given raw JSON, return a usable Foundation object */
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, success: Bool, error: String) -> Void) {
         
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandler(result: nil, error: NSError(domain: "parseJSONWithCompletionHandler", code: 1, userInfo: userInfo))
+            let errorString = "Could not parse the data as JSON: '\(data)'"
+            completionHandler(result: nil, success: false, error: errorString)
+            print(errorString)
         }
         
-        completionHandler(result: parsedResult, error: nil)
+        completionHandler(result: parsedResult, success: true, error: "")
     }
     
     /* Helper function: Given a dictionary of parameters, convert to a string for a url */
