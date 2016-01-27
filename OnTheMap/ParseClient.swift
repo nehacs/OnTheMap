@@ -103,7 +103,6 @@ class ParseClient: NSObject {
             var errorString = ""
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("here 3")
                 errorString = "There was an error with your request: \(error)"
                 print(errorString)
                 completionHandler(result: nil, success: false, error: errorString)
@@ -113,13 +112,10 @@ class ParseClient: NSObject {
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
-                    print("here 4")
                     errorString = "Your request returned an invalid response! Status code: \(response.statusCode)!"
                 } else if let response = response {
-                    print("here 5")
                     errorString = "Your request returned an invalid response! Response: \(response)!"
                 } else {
-                    print("here 6")
                     errorString = "Your request returned an invalid response!"
                 }
                 print(errorString)
