@@ -108,7 +108,13 @@ class PinPostingViewController: UIViewController, UITextFieldDelegate {
                 if success {
                     self.postStudentLocation()
                 } else {
-                    print("Failed to get User Data")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let alert = UIAlertController(title: "Failed to post student location", message: "Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+                            // Do nothing
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
                 }
             }
         }

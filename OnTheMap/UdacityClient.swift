@@ -40,21 +40,30 @@ class UdacityClient: NSObject {
         /* Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
+            var code = 0
+            var errorString = ""
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("There was an error with your request: \(error)")
+                errorString = "There was an error with your request: \(error)"
+                print(errorString)
+                completionHandler(result: nil, error: errorString, code: code)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                    code = response.statusCode
+                    errorString = "Your request returned an invalid response! Status code: \(response.statusCode)!"
                 } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
+                    code = 0
+                    errorString = "Your request returned an invalid response! Response: \(response)!"
                 } else {
-                    print("Your request returned an invalid response!")
+                    code = 0
+                    errorString = "Your request returned an invalid response!"
                 }
+                print(errorString)
+                completionHandler(result: nil, error: errorString, code: code)
                 return
             }
             
@@ -64,7 +73,7 @@ class UdacityClient: NSObject {
                 return
             }
             
-            /* Parse the data and use the data (happens in completion handler) */
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
             UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
         }
         
